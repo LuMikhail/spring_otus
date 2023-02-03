@@ -7,6 +7,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import otus.spring.homework.hm1.dao.Input;
+import otus.spring.homework.hm1.dao.Output;
 import otus.spring.homework.hm1.dao.TestDao;
 import otus.spring.homework.hm1.domain.TestDomain;
 
@@ -21,19 +23,23 @@ class TestServiceImplTest {
 
     @Mock
     private TestDao testDao;
-    private  TestService testService;
+    private Input input;
+    private Output output;
+    private TestService testService;
 
     @BeforeEach
-    void setUp() { testService = new TestServiceImpl(testDao);
+    void setUp() {
+        testService = new TestServiceImpl(testDao, output, input);
     }
 
     @Test
     void getByAll() {
-        given(testDao.loud(any()))
+        given(testDao.loud())
                 .willReturn(Stream.of(
-                        new TestDomain("To create a new table in an existing database", "CREATE TABLE"),
-                                new TestDomain("To addition a new table", "insert into"))
+                                new TestDomain("To create a new table in an existing database",
+                                        "CREATE TABLE", "1"),
+                                new TestDomain("To addition a new table", "insert into", "1"))
                         .collect(Collectors.toList()));
-        Assertions.assertEquals(2, testService.getByAll("").size());
+        Assertions.assertEquals(2, testDao.loud().size());
     }
 }

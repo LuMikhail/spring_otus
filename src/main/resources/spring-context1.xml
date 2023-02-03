@@ -5,6 +5,7 @@
         http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <bean id="testDao" class="otus.spring.homework.hm1.dao.TestDaoSimple">
+        <constructor-arg value="test_student1.csv"/>
     </bean>
 
     <bean id="testService" class="otus.spring.homework.hm1.service.TestServiceImpl">

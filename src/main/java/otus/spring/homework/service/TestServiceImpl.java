@@ -1,10 +1,12 @@
 package otus.spring.homework.service;
 
+import org.springframework.stereotype.Service;
 import otus.spring.homework.dao.TestDao;
 import otus.spring.homework.domain.TestContaints;
 
 import java.util.List;
 
+@Service
 public class TestServiceImpl implements TestService {
 
     private final TestDao dao;

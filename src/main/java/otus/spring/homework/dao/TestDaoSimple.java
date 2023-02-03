@@ -1,11 +1,13 @@
 package otus.spring.homework.dao;
 
+import org.springframework.stereotype.Component;
 import otus.spring.homework.domain.TestContaints;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class TestDaoSimple implements TestDao {
 
     public List<TestContaints> loud(String path) {

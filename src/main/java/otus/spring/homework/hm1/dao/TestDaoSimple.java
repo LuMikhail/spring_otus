@@ -1,5 +1,6 @@
 package otus.spring.homework.hm1.dao;
 
+import org.springframework.beans.factory.annotation.Value;
 import otus.spring.homework.hm1.domain.TestDomain;
 
 import java.io.BufferedReader;
@@ -10,19 +11,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TestDaoSimple implements TestDao {
+    @Value("test_student1.csv")
+    private String resource;
 
-    public List<TestDomain> loud(String path) {
-        InputStream inputStream = TestDaoSimple.class.getClassLoader().getResourceAsStream(path);
+    private InputStream getResource(String resource) {
+        return TestDaoSimple.class.getClassLoader().getResourceAsStream(resource);
+    }
+
+    @Override
+    public List<TestDomain> loud() {
+        InputStream inputStream = getResource(resource);
+        return buildTest(inputStream);
+    }
+
+    public List<TestDomain> buildTest(InputStream inputStream) {
         List<TestDomain> testingList = new ArrayList<>();
-        try {
-            assert inputStream != null;
-            try (BufferedReader br = new BufferedReader(new InputStreamReader(inputStream))) {
-                br.lines().forEach(s -> {
-                    String[] arr = s.split(";");
-                    TestDomain test = new TestDomain(arr[0], arr[1]);
-                    testingList.add(test);
-                });
-            }
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(inputStream))) {
+            br.lines().forEach(s -> {
+                String[] arr = s.split(";");
+                TestDomain test = new TestDomain(arr[0], arr[1], arr[2]);
+                testingList.add(test);
+            });
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface TestDao {
 
-    List<TestDomain> loud(String path);
+    List<TestDomain> loud();
 }
