@@ -1,0 +1,5 @@
+To create a new table in an existing database, use the command:;1 NEW TABLE, 2 CREATE TABLE, 3 MAKE TABLE;2
+The query for selecting all values from the "Persons" table has the form:; 1 SELECT ALL Persons, 2 SELECT * FROM Persons, 3 SELECT .[Persons];2
+The query for selecting the first 14 records from the "Users" table has the form:; 1 SELECT * FROM Users LIMIT 14, 2 SELECT * LIMIT 14 FROM Users, 3 SELECT * FROM USERS;1
+Write a query that will return the current date:; 1 SELECT GetDate(), 2 SELECT TodayDate(), 3 SELECT Date(Today);1
+Which operator is used to select values within a given range?; 1.WITHIN, 2.IN, 3.BETWEEN;3
