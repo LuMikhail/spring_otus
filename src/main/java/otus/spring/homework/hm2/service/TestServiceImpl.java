@@ -1,30 +1,33 @@
 package otus.spring.homework.hm2.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import otus.spring.homework.hm2.dao.*;
+import org.springframework.stereotype.Service;
+import otus.spring.homework.hm2.dao.Input;
+import otus.spring.homework.hm2.dao.Output;
+import otus.spring.homework.hm2.dao.TestDao;
 import otus.spring.homework.hm2.domain.Student;
 import otus.spring.homework.hm2.domain.TestDomain;
 
 import java.util.List;
 
+@Service
 public class TestServiceImpl implements TestService {
 
     private final TestDao dao;
     private final Output output;
     private final Input input;
+    private final StudentService studentService;
 
-    @Autowired
-    public TestServiceImpl(TestDao dao, Output output, Input input) {
+    public TestServiceImpl(TestDao dao, Output output, Input input, StudentService studentService) {
         this.dao = dao;
         this.output = output;
         this.input = input;
+        this.studentService = studentService;
     }
 
     @Override
-    public void startTest() {
+    public void runTest() {
         output.println("Take the test on the basic sql commands and answer the questions:\n");
-        UserStudent userStudent = new CreateStudent(input);
-        Student student = userStudent.addStudent(new Student());
+        Student student = studentService.createNewStudent();
         output.println(" %s %s let's start testing\n", student.getFirstName(), student.getLastName());
         List<TestDomain> test = dao.loud();
         for (TestDomain t : test) {

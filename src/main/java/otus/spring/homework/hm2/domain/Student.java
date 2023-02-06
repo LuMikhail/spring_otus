@@ -1,5 +1,8 @@
 package otus.spring.homework.hm2.domain;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Student {
     private String firstName;
     private String lastName;

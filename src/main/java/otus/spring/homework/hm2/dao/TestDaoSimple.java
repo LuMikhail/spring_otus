@@ -7,6 +7,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class TestDaoSimple implements TestDao {
 
@@ -16,24 +17,23 @@ public class TestDaoSimple implements TestDao {
         this.resource = resource;
     }
 
-    private InputStream getResource(String resource) {
-        return TestDaoSimple.class.getClassLoader().getResourceAsStream(resource);
-    }
-
     @Override
     public List<TestDomain> loud() {
         InputStream inputStream = getResource(resource);
         return buildTest(inputStream);
     }
 
-    public List<TestDomain> buildTest(InputStream inputStream) {
+    private InputStream getResource(String resource) {
+        return TestDaoSimple.class.getClassLoader().getResourceAsStream(resource);
+    }
+
+    private List<TestDomain> buildTest(InputStream inputStream) {
         List<TestDomain> testingList = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new InputStreamReader(inputStream))) {
-            br.lines().forEach(s -> {
-                String[] arr = s.split(";");
-                TestDomain test = new TestDomain(arr[0], arr[1], arr[2]);
-                testingList.add(test);
-            });
+            testingList = br.lines()
+                    .map(s -> s.split(";"))
+                    .map(arr -> new TestDomain(arr[0], arr[1], arr[2]))
+                    .collect(Collectors.toList());
         } catch (Exception e) {
             e.printStackTrace();
         }
