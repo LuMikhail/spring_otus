@@ -35,7 +35,7 @@ public class TestDaoSimple implements TestDao {
                     .map(arr -> new TestDomain(arr[0], arr[1], arr[2]))
                     .collect(Collectors.toList());
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new SourceNotFoundException("Not found source: " + resource, e);
         }
         return testingList;
     }
