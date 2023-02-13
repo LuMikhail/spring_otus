@@ -5,6 +5,6 @@ import otus.spring.homework2.domain.TestDomain;
 
 import java.util.List;
 
-public interface FinalResult {
-    void changeResult(List<TestDomain> test, Student student);
+public interface CondictingTesting {
+    void passTest(List<TestDomain> test, Student student);
 }

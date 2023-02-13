@@ -16,7 +16,7 @@ public class TestServiceImpl implements TestService {
     private final Output output;
     private final StudentService studentService;
     private final TestCsv testCsv;
-    private final FinalResult resultTestService;
+    private final CondictingTesting resultTestService;
 
     @Override
     public void runTest() {
@@ -24,6 +24,6 @@ public class TestServiceImpl implements TestService {
         Student student = studentService.createNewStudent();
         output.println(" %s %s let's start testing\n", student.getFirstName(), student.getLastName());
         List<TestDomain> test = testCsv.createTestFromCsv(source.readResource());
-        resultTestService.changeResult(test, student);
+        resultTestService.passTest(test, student);
     }
 }

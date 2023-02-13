@@ -9,18 +9,18 @@ import otus.spring.homework2.domain.TestDomain;
 import java.util.List;
 
 @Service
-public class ResultTestService implements FinalResult {
+public class СonductingTestingService implements CondictingTesting {
 
     private final Output output;
     private final Input input;
 
-    public ResultTestService(Output output, Input input) {
+    public СonductingTestingService(Output output, Input input) {
         this.output = output;
         this.input = input;
     }
 
     @Override
-    public void changeResult(List<TestDomain> test, Student student) {
+    public void passTest(List<TestDomain> test, Student student) {
         for (TestDomain t : test) {
             output.println("Answer the questions: %s\n %s\n", t.getQuestion(), t.getAnswers());
             String answer = input.askStr("Choose one correct answer: ");
