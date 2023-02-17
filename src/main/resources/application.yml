@@ -1,0 +1,15 @@
+spring:
+  messages:
+    basename: i18n/messages
+    encoding: "UTF-8"
+
+  output:
+    ansi:
+      enabled: always
+
+application:
+  locale: ru_RU
+
+test:
+  resourcePath: test_${application.locale}.csv
+
