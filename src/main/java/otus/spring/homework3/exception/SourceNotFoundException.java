@@ -1,4 +1,4 @@
-package otus.spring.homework3.dao;
+package otus.spring.homework3.exception;
 
 public class SourceNotFoundException extends RuntimeException {
 

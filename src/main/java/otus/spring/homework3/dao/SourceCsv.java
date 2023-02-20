@@ -1,6 +1,6 @@
 package otus.spring.homework3.dao;
 
-import otus.spring.homework.dao.TestDaoSimple;
+import otus.spring.homework3.exception.SourceNotFoundException;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -19,7 +19,7 @@ public class SourceCsv implements Source {
     @Override
     public List<String> readResource() {
         List<String> result = new ArrayList<>();
-        InputStream inputStream = TestDaoSimple.class.getClassLoader().getResourceAsStream(resource);
+        InputStream inputStream = SourceCsv.class.getClassLoader().getResourceAsStream(resource);
         try {
             assert inputStream != null;
             try (BufferedReader br = new BufferedReader(new InputStreamReader(inputStream))) {
