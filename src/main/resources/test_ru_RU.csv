@@ -1,0 +1,5 @@
+Чтобы создать новую таблицу в существующей базе данных, используйте команду; 1 NEW TABLE, 2 CREATE TABLE, 3 MAKE TABLE;2
+Запрос для выбора всех значений из таблицы (Persons) имеет вид:; 1 SELECT ALL Persons, 2 SELECT * FROM Persons, 3 SELECT .[Persons];2
+Запрос для выбора первых 14 записей из таблицы (Users) имеет вид:; 1 SELECT * FROM Users LIMIT 14, 2 SELECT * LIMIT 14 FROM Users, 3 SELECT * FROM USERS;1
+Напишите запрос, который вернет текущую дату:; 1 SELECT GetDate(), 2 SELECT TodayDate(), 3 SELECT Date(Today);1
+Какой оператор используется для выбора значений в пределах заданного диапазона?; 1 WITHIN, 2 IN, 3 BETWEEN;3
